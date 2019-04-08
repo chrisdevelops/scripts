@@ -1,9 +1,5 @@
 #/usr/bin/env bash
 
-alias ec2-web1="ssh -i '~/workspace/keys/aws-cr-ins-1.pem' ec2-user@ec2-52-4-175-77.compute-1.amazonaws.com"
-alias edit-hosts="nano /c/Windows/System32/drivers/etc/hosts"
-alias sudo="" # git bash on windows only (convenience)
-
 # Get Git branch
 function git_branch
 {
