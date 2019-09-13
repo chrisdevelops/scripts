@@ -18,4 +18,3 @@ foreach ($files as $file) {
         echo $e->getMessage();
     }
 }
-?>
