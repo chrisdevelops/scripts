@@ -6,15 +6,34 @@
     exit 1;
 }
 
-user="www-data"
-group="www-data"
+system="$1"
+
+[[ -z "$system" ]] &&
+{
+    read -p "System (rpm or deb) : " system
+}
+
+[[ "$system" == "rpm" ]] &&
+{
+    webserver="httpd"
+    webuser="apache"
+}
+
+[[ "$system" == "deb" ]] &&
+{
+    webserver="apache2"
+    webuser="www-data"
+}
+
+user=webuser
+group=webuser
 rootpath="/var/www/"
 
-sitesavailable="/etc/apache2/sites-available/"
-sitesenabled="/etc/apache2/sites-enabled/"
+sitesavailable="/etc/$webserver/sites-available/"
+sitesenabled="/etc/$webserver/sites-enabled/"
 
-domain="$1"
-relativedocroot="$2"
+domain="$2"
+relativedocroot="$3"
 
 [[ -z "$domain" ]] &&
 {
@@ -52,8 +71,8 @@ if ! cat << EOF > $availableconf
             AllowOverride all
             Require all granted
     </Directory>
-    ErrorLog /var/log/apache2/$domain-error.log
-    CustomLog /var/log/apache2/$domain-access.log combined
+    ErrorLog /var/log/$webserver/$domain-error.log
+    CustomLog /var/log/$webserver/$domain-access.log combined
 </VirtualHost>
 EOF
 then
@@ -67,4 +86,4 @@ cat << EOF >> /etc/hosts
 EOF
 
 ln -s "$availableconf" "$enabledconf"
-systemctl restart apache2.service
+systemctl restart $webserver.service
