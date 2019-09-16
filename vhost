@@ -6,20 +6,13 @@
     exit 1;
 }
 
-system="$1"
-
-[[ -z "$system" ]] &&
-{
-    read -p "System (rpm or deb) : " system
-}
-
-[[ "$system" == "rpm" ]] &&
+[[ -x "$(command -v rpm)" ]] &&
 {
     webserver="httpd"
     webuser="apache"
 }
 
-[[ "$system" == "deb" ]] &&
+[[ -x "$(command -v dpkg)" ]] &&
 {
     webserver="apache2"
     webuser="www-data"
