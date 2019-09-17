@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# chkconfig: 2345 20 80
+# description: --Description--
+
+# Source function library.
+. /etc/init.d/functions
+
+start() {
+    # e.g. daemon program_name &
+}
+
+stop() {
+    # e.g. killproc program_name
+}
+
+case "$1" in 
+    start)
+       start
+       ;;
+    stop)
+       stop
+       ;;
+    restart)
+       stop
+       start
+       ;;
+    status)
+       # e.g. status program_name
+       ;;
+    *)
+       echo "Usage: $0 {start|stop|status|restart}"
+esac
