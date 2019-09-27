@@ -6,27 +6,6 @@ function vm
   ( cd ~/workspace/servers/$1 && vagrant $2 )
 }
 
-# Manage Windows Hosts
-function winhosts
-{
-  HOSTFILE=/c/Windows/System32/drivers/etc/hosts
-  while [[ "$#" -gt 0 ]]
-  do
-    case $1 in
-      -c|--create)
-        echo "" >> ${HOSTFILE}
-        echo "${2}           ${3}" >> ${HOSTFILE}
-        ;;
-      -v|--view)
-        cat ${HOSTFILE} | grep "${2}"
-        ;;
-      -d|--delete)
-        sed -i '/${1}/d' ${HOSTSFILE}
-    esac
-    shift
-  done
-}
-
 # Manage projects
 function projects
 {
@@ -99,8 +78,5 @@ function gitbranch
 # Bash prompt
 PS1='\[\033]0;${PWD//[^[:ascii:]]/?}\007\]'
 PS1=$PS1'\[\033[38;5;118m\]\u\[\033[01;00m\]@\[\033[38;5;118m\]\h '
-PS1=$PS1'\[\033[01;00m\]\W'
+PS1=$PS1'\[\033[01;00m\]\w'
 PS1=$PS1'\[\033[01;33m\]$(gitbranch)\[\033[38;5;202m\] λ \[\033[01;00m\]'
-MSYS2_PS1="$PS1"
-
-PATH=$PATH:/c/"Program Files"/nodejs
