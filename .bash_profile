@@ -1,43 +1,40 @@
 #/usr/bin/env bash
 
+eval $(thefuck --alias)
+
+
+alias ccat="pygmentize -g"
+alias gdp="gulp default --production"
+
+alias elastica="bash /home/chris/elasticsearch-1.7.6/bin/elasticsearch"
+
+alias ssh-pastview-live="ssh ec2-user@ec2-54-72-129-74.eu-west-1.compute.amazonaws.com"
+alias ssh-pastview-staging="ssh ec2-user@ec2-52-16-167-94.eu-west-1.compute.amazonaws.com"
+alias ssh-pastview-elasticsearch="ssh ec2-user@ec2-54-72-129-74.eu-west-1.compute.amazonaws.com"
+
+function ssh-internal
+{
+  ssh "it@internal$1.internal.townswebarchiving.com"
+}
+
+
+alias ssh-alpha-live="ssh root@alpha.servers.townswebarchiving.com"
+alias ssh-bravo-live="ssh root@bravo.servers.townswebarchiving.com -p 222"
+
+function inspire
+{
+  showerthoughts=$(curl -s --connect-timeout 5 -A '/u/DrDoctor13' \
+  'https://www.reddit.com/r/showerthoughts/top.json?sort=top&t=week&limit=100' | \
+  python2.7 -c 'import sys, random, json; randnum = random.randint(0,99); response = json.load(sys.stdin)["data"]["children"][randnum]["data"]; print "\n\"" + response["title"] + "\""; print "    -" + response["author"] + "\n";')
+
+  echo $showerthoughts | cowsay | lolcat
+
+}
+
 # Manage VMs
 function vm
 {
   ( cd ~/workspace/servers/$1 && vagrant $2 )
-}
-
-# Manage projects
-function projects
-{
-  cd ~/workspace/projects/
-  while [[ "$#" -gt 0 ]]
-  do
-    case $1 in
-      -c|--create)
-        mkdir ${2}
-        cd ${2}
-        ;;
-      -g|--get)
-        cd ${2}
-        ;;
-      -v|--view)
-        ls -al ${2}
-        ;;
-      -d|--delete)
-        rm -rf ~/workspace/projects/${2}
-    esac
-    shift
-  done
-}
-
-function count {
-  total=$1
-  for ((i=total; i>0; i--));
-    do
-      sleep 1;
-      printf "Time remaining $i secs \r";
-    done
-  echo -e "\a"
 }
 
 function up {
@@ -75,8 +72,10 @@ function gitbranch
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+export PATH="$PATH:/usr/local/bin/postman/"
+
 # Bash prompt
 PS1='\[\033]0;${PWD//[^[:ascii:]]/?}\007\]'
-PS1=$PS1'\[\033[38;5;118m\]\u\[\033[01;00m\]@\[\033[38;5;118m\]\h '
-PS1=$PS1'\[\033[01;00m\]\w'
-PS1=$PS1'\[\033[01;33m\]$(gitbranch)\[\033[38;5;202m\] λ \[\033[01;00m\]'
+PS1=$PS1'\[\033[1;38;5;118m\]\u\[\033[1;00m\]@\[\033[1;38;5;118m\]\h '
+PS1=$PS1'\[\033[1;00m\]\w'
+PS1=$PS1'\[\033[1;38;5;166m\]$(gitbranch)\[\033[1;00m\] λ \[\033[1;00m\]'
