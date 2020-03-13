@@ -48,12 +48,6 @@ absolutedocroot="$rootpath$relativedocroot"
     exit 1;
 }
 
-[[ ! -d "$absolutedocroot" ]] &&
-{
-    echo "Document root doesn't exist."
-    exit 1;
-}
-
 if ! cat << EOF > $availableconf
 <VirtualHost *:80>
     ServerName $domain
