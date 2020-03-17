@@ -2,8 +2,16 @@
 
 eval $(thefuck --alias)
 
+alias vg="vagrant"
+alias vgbl="vagrant box list"
+alias vgbr="vagrant box remove"
+alias vgi="vagrant init"
+alias vgr="vagrant reload"
+alias vgh="vagrant halt"
+alias vgd="vagrant destroy"
 
 alias ccat="pygmentize -g"
+
 alias gdp="gulp default --production"
 
 alias elastica="bash /home/chris/elasticsearch-1.7.6/bin/elasticsearch"
@@ -72,7 +80,8 @@ function gitbranch
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PATH="$PATH:/usr/local/bin/postman/"
+PATH="$PATH:/home/chris/.config/composer/vendor/bin"
+
 
 # Bash prompt
 PS1='\[\033]0;${PWD//[^[:ascii:]]/?}\007\]'
