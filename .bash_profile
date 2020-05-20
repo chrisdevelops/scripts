@@ -1,17 +1,5 @@
 #/usr/bin/env bash
 
-eval $(thefuck --alias)
-
-alias vg="vagrant"
-alias vgbl="vagrant box list"
-alias vgbr="vagrant box remove"
-alias vgi="vagrant init"
-alias vgr="vagrant reload"
-alias vgh="vagrant halt"
-alias vgd="vagrant destroy"
-
-alias ccat="pygmentize -g"
-
 function inspire
 {
   showerthoughts=$(curl -s --connect-timeout 5 -A '/u/DrDoctor13' \
@@ -19,21 +7,11 @@ function inspire
   python2.7 -c 'import sys, random, json; randnum = random.randint(0,99); response = json.load(sys.stdin)["data"]["children"][randnum]["data"]; print "\n\"" + response["title"] + "\""; print "    -" + response["author"] + "\n";')
 
   echo $showerthoughts | cowsay | lolcat
-
 }
 
-# Manage VMs
 function vm
 {
   ( cd ~/workspace/servers/$1 && vagrant $2 )
-}
-
-function up {
-  lvl=$1
-  while [ "$lvl" -gt "0" ]; do
-    cd ..
-    lvl=$(($lvl - 1))
-  done
 }
 
 function extract {
@@ -64,7 +42,6 @@ function gitbranch
 }
 
 PATH="$PATH:/home/chris/.config/composer/vendor/bin"
-
 
 # Bash prompt
 PS1='\[\033]0;${PWD//[^[:ascii:]]/?}\007\]'
