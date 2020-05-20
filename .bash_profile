@@ -12,23 +12,6 @@ alias vgd="vagrant destroy"
 
 alias ccat="pygmentize -g"
 
-alias gdp="gulp default --production"
-
-alias elastica="bash /home/chris/elasticsearch-1.7.6/bin/elasticsearch"
-
-alias ssh-pastview-live="ssh ec2-user@ec2-54-72-129-74.eu-west-1.compute.amazonaws.com"
-alias ssh-pastview-staging="ssh ec2-user@ec2-52-16-167-94.eu-west-1.compute.amazonaws.com"
-alias ssh-pastview-elasticsearch="ssh ec2-user@ec2-54-72-129-74.eu-west-1.compute.amazonaws.com"
-
-function ssh-internal
-{
-  ssh "it@internal$1.internal.townswebarchiving.com"
-}
-
-
-alias ssh-alpha-live="ssh root@alpha.servers.townswebarchiving.com"
-alias ssh-bravo-live="ssh root@bravo.servers.townswebarchiving.com -p 222"
-
 function inspire
 {
   showerthoughts=$(curl -s --connect-timeout 5 -A '/u/DrDoctor13' \
