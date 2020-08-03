@@ -1,0 +1,17 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack --config webpack.development.config.js --watch",
+    "serve": "./node_modules/.bin/webpack-dev-server --config webpack.development.config.js",
+    "build:dev": "./node_modules/.bin/webpack --config webpack.development.config.js",
+    "build:production": "./node_modules/.bin/webpack --config webpack.production.config.js"
+  },
+  "author": "Chris Rowles",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
