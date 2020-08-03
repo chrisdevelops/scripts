@@ -1,9 +1,0 @@
-[Unit]
-Description="--Description--"
-
-[Service]
-Type=oneshot|simple
-ExecStart=/usr/bin/script
-
-[Install]
-WantedBy=multi-user.target
