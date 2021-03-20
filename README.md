@@ -1,3 +1,3 @@
-# dotfiles
+# Utilities & Dotfiles
 
-System files and configuration scripts for quick provisioning.
+System utilities, configurations and dotfiles for quick provisioning.
